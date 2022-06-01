@@ -1,20 +1,13 @@
-#include <stdio.h>
-
-void print_string(char *string)
-{
-	while (string && *string) {
-		putchar((int)*string);
-		string++;
-	}
-	putchar('\n');
-}
+#include "include/point2d.h"
+#include "include/circle.h"
 
 int main(int argc, char **argv)
 {
-	printf("%d\n", argc);
-	for (int i = 0; i < argc; i++) {
-		printf("%s\n", argv[i]);
-	}
+	Point2D_t p = {1, 2};
+	Circle_t c = {p, 10};
+
+	point2d_print(p);
+	circle_print(c);
 
 	return 0;
 }
