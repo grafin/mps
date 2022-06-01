@@ -1,8 +1,6 @@
 #ifndef POINT2D_H_
 #define POINT2D_H_
 
-#include <stdio.h>
-
 typedef struct Point2D {
 	double x, y;
 } Point2D_t;
