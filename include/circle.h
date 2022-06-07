@@ -8,6 +8,6 @@ typedef struct Circle {
 	double radius;
 } Circle_t;
 
-void circle_print(const Circle_t);
+void circle_print(const Circle_t*);
 
 #endif /* CIRCLE_H_ */
