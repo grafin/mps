@@ -1,4 +1,4 @@
-#include "../include/point2d.h"
+#include <point2d.h>
 
 #include <stdio.h>
 

@@ -1,4 +1,4 @@
-#include "../include/circle.h"
+#include <circle.h>
 
 #include <stdio.h>
 

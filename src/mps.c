@@ -1,5 +1,5 @@
-#include "include/point2d.h"
-#include "include/canvas.h"
+#include <point2d.h>
+#include <canvas.h>
 
 #include <stdio.h>
 
