@@ -69,9 +69,6 @@ int canvas_update(Canvas_t *canvas) {
 }
 
 int canvas_delete(Canvas_t *canvas) {
-	/* @TODO add normal exit handling. Wait 5 sec for now */
-	SDL_Delay(5000);
-
 	SDL_DestroyRenderer(canvas->_p->renderer);
 	SDL_DestroyWindow(canvas->_p->window);
 	SDL_Quit();
