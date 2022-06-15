@@ -64,7 +64,6 @@ error:
 
 int canvas_update(Canvas_t *canvas) {
 	SDL_RenderPresent(canvas->_p->renderer);
-	/* @TODO add error handling */
 	return 0;
 }
 
@@ -72,8 +71,6 @@ int canvas_delete(Canvas_t *canvas) {
 	SDL_DestroyRenderer(canvas->_p->renderer);
 	SDL_DestroyWindow(canvas->_p->window);
 	SDL_Quit();
-
-	/* @TODO add error handling */
 	return 0;
 }
 
@@ -92,8 +89,12 @@ int canvas_fill(Canvas_t *canvas, const Color_t *color) {
 	if (canvas_set_color(canvas, color) < 0)
 		return -1;
 
-	/* @TODO error handling */
-	SDL_RenderClear(canvas->_p->renderer);
+	if (SDL_RenderClear(canvas->_p->renderer) < 0) {
+		printf("Failed to fill renderer! SDL_Error: %s\n",
+			SDL_GetError());
+		return -1;
+	}
+
 	return 0;
 }
 
@@ -101,7 +102,9 @@ int canvas_draw_point2d(Canvas_t *canvas, const Point2D_t *p, const Color_t *c) 
 	if (canvas_set_color(canvas, c) < 0)
 		return -1;
 
-	/* @TODO error handling */
-	SDL_RenderDrawPointF(canvas->_p->renderer, p->x, p->y);
+	if (SDL_RenderDrawPointF(canvas->_p->renderer, p->x, p->y) < 0) {
+		printf("Failed to draw Point2D!");
+		return -1;
+	}
 	return 0;
 }
