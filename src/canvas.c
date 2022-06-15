@@ -118,3 +118,20 @@ int canvas_draw_point2d(Canvas_t *canvas, const Point2D_t *p, const Color_t *c) 
 	}
 	return 0;
 }
+
+int canvas_draw_rectangle(Canvas_t *canvas, const Rectangle_t *r, const Color_t *c) {
+	if (canvas_set_color(canvas, c) < 0)
+		return -1;
+
+	Point2D_t p;
+	for (double y = r->start.y; y < r->start.y + r->height; y++) {
+		for (double x = r->start.x; x < r->start.x + r->width; x++) {
+			p.x = x;
+			p.y = y;
+			if (canvas_draw_point2d(canvas, &p, c) < 0)
+				return -1;
+		}
+	}
+
+	return 0;
+}
