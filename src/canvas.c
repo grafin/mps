@@ -55,6 +55,16 @@ Canvas_t *canvas_create(unsigned int width, unsigned int height)
 		goto error;
 	}
 
+	if (SDL_SetRenderDrawBlendMode(canvasPrivate->renderer,
+				       SDL_BLENDMODE_BLEND) < 0) {
+		printf("Could not set blend mode! SDL_Error: %s\n",
+			SDL_GetError());
+		SDL_DestroyRenderer(canvasPrivate->renderer);
+		SDL_DestroyWindow(canvasPrivate->window);
+		SDL_Quit();
+		goto error;
+	}
+
 	return canvas;
 error:
 	free(canvas);
