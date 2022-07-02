@@ -108,12 +108,12 @@ int canvas_fill(Canvas_t *canvas, const Color_t *color) {
 	return 0;
 }
 
-int canvas_draw_point2d(Canvas_t *canvas, const Point2D_t *p, const Color_t *c) {
+int canvas_draw_point2d(Canvas_t *canvas, const Vector2D_t *p, const Color_t *c) {
 	if (canvas_set_color(canvas, c) < 0)
 		return -1;
 
 	if (SDL_RenderDrawPointF(canvas->_p->renderer, p->x, p->y) < 0) {
-		printf("Failed to draw Point2D!");
+		printf("Failed to draw Vector2D!");
 		return -1;
 	}
 	return 0;
@@ -123,7 +123,7 @@ int canvas_draw_rectangle(Canvas_t *canvas, const Rectangle_t *r, const Color_t 
 	if (canvas_set_color(canvas, c) < 0)
 		return -1;
 
-	Point2D_t p;
+	Vector2D_t p;
 	for (double y = r->start.y; y < r->start.y + r->height; y++) {
 		for (double x = r->start.x; x < r->start.x + r->width; x++) {
 			p.x = x;

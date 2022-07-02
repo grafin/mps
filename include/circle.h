@@ -1,10 +1,10 @@
 #ifndef CIRCLE_H_
 #define CIRCLE_H_
 
-#include "point2d.h"
+#include "vector2d.h"
 
 typedef struct Circle {
-	Point2D_t center;
+	Vector2D_t center;
 	double radius;
 } Circle_t;
 
