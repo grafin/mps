@@ -56,7 +56,7 @@ Canvas_t *canvas_create(unsigned int width, unsigned int height)
 	}
 
 	if (SDL_SetRenderDrawBlendMode(canvasPrivate->renderer,
-				       SDL_BLENDMODE_BLEND) < 0) {
+				       SDL_BLENDMODE_NONE) < 0) {
 		printf("Could not set blend mode! SDL_Error: %s\n",
 			SDL_GetError());
 		SDL_DestroyRenderer(canvasPrivate->renderer);
