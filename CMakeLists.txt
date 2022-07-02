@@ -39,6 +39,7 @@ endif()
 
 include_directories(include)
 aux_source_directory(src SRC_LIST)
+aux_source_directory(src/phys SRC_LIST)
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 
@@ -46,12 +47,12 @@ find_package(SDL2 REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 99)
+set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD_REQUIRED ON)
 set_property(
   TARGET ${PROJECT_NAME}
   APPEND_STRING
-  PROPERTY COMPILE_FLAGS "-Wall -Wextra -Wformat-security -pedantic -std=c99 ")
+  PROPERTY COMPILE_FLAGS "-Wall -Wextra -Wformat-security -pedantic -std=c11 ")
 set_property(
   TARGET ${PROJECT_NAME}
   APPEND_STRING
