@@ -13,12 +13,14 @@
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+const int TITLE_LEN = 255;
 
 const float FPS = 60.0;
 
 int main(void)
 {
 	bool running = true;
+	char title[TITLE_LEN + 1];
 	SDL_Event e;
 
 	Color_t black = {0x00, 0x00, 0x00, 0xFF};
@@ -32,6 +34,7 @@ int main(void)
 		return -1;
 
 	double dt = 0;
+	uint64_t frame = 0;
 	while (running) {
 		uint64_t t_0 = SDL_GetTicks64();
 
@@ -66,6 +69,13 @@ int main(void)
 		canvas_draw_rectangle(
 			canvas, (const Rectangle_t *)&rect_1, &red);
 		canvas_update(canvas);
+
+		frame++;
+		if (frame % 50 == 0) {
+			snprintf(title,
+				 TITLE_LEN, "MyPhysicsSim FPS: %f", 1/dt);
+			canvas_set_title(canvas, title);
+		}
 
 		uint64_t t_1 = SDL_GetTicks64();
 		dt = (t_1 - t_0) / 1000.0;
