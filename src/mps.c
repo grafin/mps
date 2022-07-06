@@ -35,6 +35,7 @@ int main(void)
 
 	double dt = 0;
 	uint64_t frame = 0;
+	uint64_t T_0 = SDL_GetTicks64();
 	while (running) {
 		uint64_t t_0 = SDL_GetTicks64();
 
@@ -71,9 +72,14 @@ int main(void)
 		canvas_update(canvas);
 
 		frame++;
-		if (frame % 50 == 0) {
+		if (frame >= 50) {
+			uint64_t T_1 = SDL_GetTicks64();
+			double FPS = frame * 1000.0 / (T_1 - T_0);
+			frame = 0;
+			T_0 = T_1;
+
 			snprintf(title,
-				 TITLE_LEN, "MyPhysicsSim FPS: %f", 1/dt);
+				 TITLE_LEN, "MyPhysicsSim FPS: %f", FPS);
 			canvas_set_title(canvas, title);
 		}
 
