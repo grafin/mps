@@ -135,3 +135,8 @@ int canvas_draw_rectangle(Canvas_t *canvas, const Rectangle_t *r, const Color_t 
 
 	return 0;
 }
+
+void canvas_set_title(Canvas_t *canvas, const char *title)
+{
+	SDL_SetWindowTitle(canvas->_p->window, title);
+}
