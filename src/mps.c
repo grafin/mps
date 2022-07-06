@@ -5,10 +5,10 @@
 
 #include <SDL2/SDL.h>
 
-#include <rectangle.h>
-
 #include <vector2d.h>
+#include <rectangle.h>
 #include <phys/rectangle.h>
+#include <circle.h>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -24,10 +24,12 @@ int main(void)
 	SDL_Event e;
 
 	Color_t black = {0x00, 0x00, 0x00, 0xFF};
+	Color_t white = {0xFF, 0xFF, 0xFF, 0xFF};
 	Color_t red = {0xFF, 0x00, 0x00, 0xFF};
 	Rectangle_t start = {{0, 100}, 100, 100};
 
 	PhysRectangle_t rect_1 = {{start}, {400, 100}};
+	Circle_t circle = {{250, 250}, 100};
 
 	Canvas_t *canvas = canvas_create(SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (canvas == NULL)
@@ -67,6 +69,7 @@ int main(void)
 		    rect_1.velocity.y < 0)
 			rect_1.velocity.y *= -1;
 
+		canvas_draw_circle(canvas, &circle, &white);
 		canvas_draw_rectangle(
 			canvas, (const Rectangle_t *)&rect_1, &red);
 		canvas_update(canvas);
