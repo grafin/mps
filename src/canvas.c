@@ -136,6 +136,22 @@ int canvas_draw_rectangle(Canvas_t *canvas, const Rectangle_t *r, const Color_t 
 	return 0;
 }
 
+int canvas_draw_circle(Canvas_t *canvas, const Circle_t *circle, const Color_t *c)
+{
+	for (double dy = -circle->radius; dy < circle->radius; dy++) {
+		for (double dx = -circle->radius; dx < circle->radius; dx++) {
+			if (dx * dx + dy * dy < circle->radius * circle->radius) {
+				Vector2D_t p = {circle->center.x + dx,
+						circle->center.y + dy};
+				if (canvas_draw_point2d(canvas, &p, c) != 0)
+					return -1;
+			}
+		}
+	}
+
+	return 0;
+}
+
 void canvas_set_title(Canvas_t *canvas, const char *title)
 {
 	SDL_SetWindowTitle(canvas->_p->window, title);
