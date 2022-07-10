@@ -5,6 +5,7 @@
 
 #include <SDL2/SDL.h>
 
+#include <phys/universe.h>
 #include <vector2d.h>
 #include <rectangle.h>
 #include <phys/rectangle.h>
@@ -34,6 +35,7 @@ int main(void)
 	Canvas_t *canvas = canvas_create(SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (canvas == NULL)
 		return -1;
+	universe_init(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT);
 
 	double dt = 0;
 	uint64_t frame = 0;
@@ -46,29 +48,12 @@ int main(void)
 				running = false;
 		}
 
+		phys_rectangle_move(&rect_1, dt);
+
 		if (canvas_fill(canvas, &black) != 0) {
 			canvas_delete(canvas);
 			return -1;
 		}
-
-		phys_rectangle_move(&rect_1, dt);
-
-		if (rect_1.start.x + rect_1.width > SCREEN_WIDTH &&
-		    rect_1.velocity.x > 0)
-			rect_1.velocity.x *= -1;
-
-		if (rect_1.start.x < 0 &&
-		    rect_1.velocity.x < 0)
-			rect_1.velocity.x *= -1;
-
-		if (rect_1.start.y + rect_1.height > SCREEN_HEIGHT &&
-		    rect_1.velocity.y > 0)
-			rect_1.velocity.y *= -1;
-
-		if (rect_1.start.y < 0 &&
-		    rect_1.velocity.y < 0)
-			rect_1.velocity.y *= -1;
-
 		canvas_draw_circle(canvas, &circle, &white);
 		canvas_draw_rectangle(
 			canvas, (const Rectangle_t *)&rect_1, &red);

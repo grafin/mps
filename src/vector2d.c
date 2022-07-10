@@ -42,3 +42,21 @@ Vector2D_t *vector2d_mul_float(Vector2D_t *a,
 
 	return a;
 }
+
+/**
+ * Flips vector v horizontally.
+ */
+Vector2D_t *vector2d_flip_hor(Vector2D_t *v)
+{
+	v->x *= -1;
+	return v;
+}
+
+/**
+ * Flips vector v vertically.
+ */
+Vector2D_t *vector2d_flip_ver(Vector2D_t *v)
+{
+	v->y *= -1;
+	return v;
+}
