@@ -32,7 +32,7 @@ int main(void)
 	PhysRectangle_t rect_1 = {{start}, {400, 100}};
 	Circle_t circle = {{250, 250}, 100};
 
-	Canvas_t *canvas = canvas_create(SCREEN_WIDTH, SCREEN_HEIGHT);
+	struct Canvas *canvas = canvas_create(SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (canvas == NULL)
 		return -1;
 	universe_init(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT);
