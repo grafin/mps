@@ -61,7 +61,7 @@ canvas_draw_rectangle(struct Canvas *canvas,
  */
 int
 canvas_draw_circle(struct Canvas *canvas,
-		   const Circle_t *circle, const struct Color *color);
+		   const struct Circle *circle, const struct Color *color);
 
 /**
  * Update title of canvas.

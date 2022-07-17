@@ -30,7 +30,7 @@ int main(void)
 	struct Rectangle start = {{0, 100}, 100, 100};
 
 	PhysRectangle_t rect_1 = {{start}, {400, 100}};
-	Circle_t circle = {{250, 250}, 100};
+	struct Circle circle = {{250, 250}, 100};
 
 	struct Canvas *canvas = canvas_create(SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (canvas == NULL)

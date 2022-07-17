@@ -174,7 +174,7 @@ out:
 
 int
 canvas_draw_circle(struct Canvas *canvas,
-		   const Circle_t *circle, const struct Color *color)
+		   const struct Circle *circle, const struct Color *color)
 {
 	double r = circle->radius;
 	int rc = 0;

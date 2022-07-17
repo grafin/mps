@@ -2,7 +2,9 @@
 
 #include <stdio.h>
 
-void circle_print(const Circle_t *c)
+void
+circle_print(const struct Circle *circle)
 {
-	printf("Circle{%f, %f, %f}\n", c->center.x, c->center.y, c->radius);
+	printf("Circle{%f, %f, %f}\n",
+	       circle->center.x, circle->center.y, circle->radius);
 }

@@ -3,11 +3,25 @@
 
 #include "vector2d.h"
 
-typedef struct Circle {
+/**
+ * Circle with center and radius.
+ */
+struct Circle {
+	/**
+	 * Center of the circle.
+	 */
 	struct Vector2D center;
-	double radius;
-} Circle_t;
 
-void circle_print(const Circle_t*);
+	/**
+	 * Radius of the circle.
+	 */
+	double radius;
+};
+
+/**
+ * Print circle to stdout.
+ */
+void
+circle_print(const struct Circle *circle);
 
 #endif /* CIRCLE_H_ */
