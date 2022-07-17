@@ -27,7 +27,7 @@ int main(void)
 	struct Color black = {0x00, 0x00, 0x00, 0xFF};
 	struct Color white = {0xFF, 0xFF, 0xFF, 0xFF};
 	struct Color red = {0xFF, 0x00, 0x00, 0xFF};
-	Rectangle_t start = {{0, 100}, 100, 100};
+	struct Rectangle start = {{0, 100}, 100, 100};
 
 	PhysRectangle_t rect_1 = {{start}, {400, 100}};
 	Circle_t circle = {{250, 250}, 100};
@@ -56,7 +56,7 @@ int main(void)
 		}
 		canvas_draw_circle(canvas, &circle, &white);
 		canvas_draw_rectangle(
-			canvas, (const Rectangle_t *)&rect_1, &red);
+			canvas, (const struct Rectangle *)&rect_1, &red);
 		canvas_update(canvas);
 
 		frame++;

@@ -5,7 +5,7 @@
 
 typedef struct PhysRectangle {
 	union {
-		Rectangle_t _rect;
+		struct Rectangle _rect;
 		struct {
 			struct Vector2D start;
 			double width;

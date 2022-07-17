@@ -153,7 +153,7 @@ out:
 
 int
 canvas_draw_rectangle(struct Canvas *canvas,
-		      const Rectangle_t *rect, const struct Color *color)
+		      const struct Rectangle *rect, const struct Color *color)
 {
 	struct Vector2D end = {
 		rect->start.x + rect->width, rect->start.y + rect->height};

@@ -3,12 +3,30 @@
 
 #include "vector2d.h"
 
-typedef struct Rectangle {
+/**
+ * Rectangle with top-right corner at start, with width and height.
+ */
+struct Rectangle {
+	/**
+	 * Top-left corner of the rectangle.
+	 */
 	struct Vector2D start;
-	double width;
-	double height;
-} Rectangle_t;
 
-void rectangle_print(const Rectangle_t*);
+	/**
+	 * Width of the rectangle.
+	 */
+	double width;
+
+	/**
+	 * Height of the rectangle.
+	 */
+	double height;
+};
+
+/**
+ * Print rectangle to stdout.
+ */
+void
+rectangle_print(const struct Rectangle *rect);
 
 #endif /* RECTANGLE_H_ */

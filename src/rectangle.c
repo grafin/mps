@@ -2,8 +2,9 @@
 
 #include <stdio.h>
 
-void rectangle_print(const Rectangle_t *r)
+void
+rectangle_print(const struct Rectangle *rect)
 {
 	printf("Rectangle{%f, %f, %f, %f}\n",
-		r->start.x, r->start.y, r->width, r->height);
+	       rect->start.x, rect->start.y, rect->width, rect->height);
 }

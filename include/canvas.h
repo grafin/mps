@@ -54,7 +54,7 @@ canvas_draw_point2d(struct Canvas *canvas,
  */
 int
 canvas_draw_rectangle(struct Canvas *canvas,
-		      const Rectangle_t *rect, const struct Color *color);
+		      const struct Rectangle *rect, const struct Color *color);
 
 /**
  * Draw filled circle on canvas, using specified color.
