@@ -4,7 +4,7 @@
 #include "vector2d.h"
 
 typedef struct Circle {
-	Vector2D_t center;
+	struct Vector2D center;
 	double radius;
 } Circle_t;
 

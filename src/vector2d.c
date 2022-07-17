@@ -2,16 +2,15 @@
 
 #include <stdio.h>
 
-void vector_print(const Vector2D_t *v)
+void
+vector2d_print(const struct Vector2D *vector)
 {
-	printf("Vector2D{%f, %f}\n", v->x, v->y);
+	printf("Vector2D{%f, %f}\n", vector->x, vector->y);
 }
 
-/**
- * a = b + c
- */
-Vector2D_t *vector2d_sum(Vector2D_t *a,
-	const Vector2D_t *b, const Vector2D_t *c)
+struct Vector2D *
+vector2d_sum(struct Vector2D *a,
+	     const struct Vector2D *b, const struct Vector2D *c)
 {
 	a->x = b->x + c->x;
 	a->y = b->y + c->y;
@@ -19,11 +18,9 @@ Vector2D_t *vector2d_sum(Vector2D_t *a,
 	return a;
 }
 
-/**
- * a = b - c
- */
-Vector2D_t *vector2d_dif(Vector2D_t *a,
-	const Vector2D_t *b, const Vector2D_t *c)
+struct Vector2D *
+vector2d_dif(struct Vector2D *a,
+	     const struct Vector2D *b, const struct Vector2D *c)
 {
 	a->x = b->x - c->x;
 	a->y = b->y - c->y;
@@ -31,11 +28,9 @@ Vector2D_t *vector2d_dif(Vector2D_t *a,
 	return a;
 }
 
-/**
- * a = b * c
- */
-Vector2D_t *vector2d_mul_float(Vector2D_t *a,
-	const Vector2D_t *b, const float c)
+struct Vector2D *
+vector2d_mul_float(struct Vector2D *a,
+		   const struct Vector2D *b, const float c)
 {
 	a->x = b->x * c;
 	a->y = b->y * c;
@@ -43,20 +38,16 @@ Vector2D_t *vector2d_mul_float(Vector2D_t *a,
 	return a;
 }
 
-/**
- * Flips vector v horizontally.
- */
-Vector2D_t *vector2d_flip_hor(Vector2D_t *v)
+struct Vector2D *
+vector2d_flip_hor(struct Vector2D *vector)
 {
-	v->x *= -1;
-	return v;
+	vector->x *= -1;
+	return vector;
 }
 
-/**
- * Flips vector v vertically.
- */
-Vector2D_t *vector2d_flip_ver(Vector2D_t *v)
+struct Vector2D *
+vector2d_flip_ver(struct Vector2D *vector)
 {
-	v->y *= -1;
-	return v;
+	vector->y *= -1;
+	return vector;
 }

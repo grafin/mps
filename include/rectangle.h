@@ -4,7 +4,7 @@
 #include "vector2d.h"
 
 typedef struct Rectangle {
-	Vector2D_t start;
+	struct Vector2D start;
 	double width;
 	double height;
 } Rectangle_t;

@@ -1,17 +1,53 @@
 #ifndef VECTOR_2D_H_
 #define VECTOR_2D_H_
 
-typedef struct Vector2D {
+/**
+ * Two-dimentional vector.
+ */
+struct Vector2D {
+	/**
+	 * Coordinates of the vector.
+	 */
 	double x, y;
-} Vector2D_t;
+};
 
-void vector2d_print(const Vector2D_t*);
+/**
+ * Print vector to stdout.
+ */
+void
+vector2d_print(const struct Vector2D *vector);
 
-Vector2D_t *vector2d_sum(Vector2D_t*, const Vector2D_t*, const Vector2D_t*);
-Vector2D_t *vector2d_dif(Vector2D_t*, const Vector2D_t*, const Vector2D_t*);
-Vector2D_t *vector2d_mul_float(Vector2D_t*, const Vector2D_t*, const float);
+/**
+ * Returns pointer to vector a = b + c.
+ */
+struct Vector2D *
+vector2d_sum(struct Vector2D *a,
+	     const struct Vector2D *b, const struct Vector2D *c);
 
-Vector2D_t *vector2d_flip_hor(Vector2D_t *v);
-Vector2D_t *vector2d_flip_ver(Vector2D_t *v);
+/**
+ * Returns pointer to vector a = b - c.
+ */
+struct Vector2D *
+vector2d_dif(struct Vector2D *a,
+	     const struct Vector2D *b, const struct Vector2D *c);
+
+/**
+ * Returns pointer to vector a = b * c.
+ */
+struct Vector2D *
+vector2d_mul_float(struct Vector2D *a,
+		   const struct Vector2D *b, const float c);
+
+/**
+ * Flips vector horizontally and returns pointer to it.
+ */
+struct Vector2D *
+vector2d_flip_hor(struct Vector2D *vector);
+
+/**
+ * Flips vector vertically and returns pointer to it.
+ */
+struct Vector2D *
+vector2d_flip_ver(struct Vector2D *vector);
 
 #endif /* VECTOR_2D_H_ */

@@ -47,7 +47,7 @@ canvas_fill(struct Canvas *canvas, const struct Color *color);
  */
 int
 canvas_draw_point2d(struct Canvas *canvas,
-		    const Vector2D_t *pos, const struct Color *color);
+		    const struct Vector2D *pos, const struct Color *color);
 
 /**
  * Draw filled rect on canvas, using specified color.

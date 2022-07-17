@@ -7,12 +7,12 @@ typedef struct PhysRectangle {
 	union {
 		Rectangle_t _rect;
 		struct {
-			Vector2D_t start;
+			struct Vector2D start;
 			double width;
 			double height;
 		};
 	};
-	Vector2D_t velocity;
+	struct Vector2D velocity;
 } PhysRectangle_t;
 
 void phys_rectangle_move(PhysRectangle_t *rect, double dt);

@@ -137,7 +137,7 @@ out:
 
 int
 canvas_draw_point2d(struct Canvas *canvas,
-		    const Vector2D_t *pos, const struct Color *color)
+		    const struct Vector2D *pos, const struct Color *color)
 {
 	int rc = canvas_set_color(canvas, color);
 	if (rc < 0)
@@ -155,10 +155,10 @@ int
 canvas_draw_rectangle(struct Canvas *canvas,
 		      const Rectangle_t *rect, const struct Color *color)
 {
-	Vector2D_t end = {
+	struct Vector2D end = {
 		rect->start.x + rect->width, rect->start.y + rect->height};
 
-	Vector2D_t p = {0};
+	struct Vector2D p = {0};
 	int rc = 0;
 	for (p.y = rect->start.y; p.y < end.y; p.y++) {
 		for (p.x = rect->start.x; p.x < end.x; p.x++) {
@@ -182,7 +182,7 @@ canvas_draw_circle(struct Canvas *canvas,
 	for (double dy = -r; dy < r; dy++) {
 		for (double dx = -r; dx < r; dx++) {
 			if (dx * dx + dy * dy < r * r) {
-				Vector2D_t p = {circle->center.x + dx,
+				struct Vector2D p = {circle->center.x + dx,
 						circle->center.y + dy};
 				rc = canvas_draw_point2d(canvas, &p, color);
 				if (rc < 0)
