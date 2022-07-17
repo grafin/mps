@@ -3,18 +3,29 @@
 
 #include <rectangle.h>
 
-typedef struct PhysRectangle {
+/**
+ * Physical model of rectangle.
+ */
+struct PhysRectangle {
 	union {
-		struct Rectangle _rect;
-		struct {
-			struct Vector2D start;
-			double width;
-			double height;
-		};
-	};
-	struct Vector2D velocity;
-} PhysRectangle_t;
+		struct Rectangle;
 
-void phys_rectangle_move(PhysRectangle_t *rect, double dt);
+		/**
+		 * Rectangle object.
+		 */
+		struct Rectangle _rect;
+	};
+
+	/**
+	 * Current velocity vector.
+	 */
+	struct Vector2D velocity;
+};
+
+/**
+ * Change rectangle position in space, after dt time passes.
+ */
+void
+phys_rectangle_move(struct PhysRectangle *rect, double dt);
 
 #endif /* PHYS_RECTANGLE_H_ */

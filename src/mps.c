@@ -29,7 +29,7 @@ int main(void)
 	struct Color red = {0xFF, 0x00, 0x00, 0xFF};
 	struct Rectangle start = {{0, 100}, 100, 100};
 
-	PhysRectangle_t rect_1 = {{start}, {400, 100}};
+	struct PhysRectangle rect_1 = {{start}, {400, 100}};
 	struct Circle circle = {{250, 250}, 100};
 
 	struct Canvas *canvas = canvas_create(SCREEN_WIDTH, SCREEN_HEIGHT);

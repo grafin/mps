@@ -1,7 +1,8 @@
 #include <phys/rectangle.h>
 #include <phys/universe.h>
 
-void phys_rectangle_move(PhysRectangle_t *rect, double dt)
+void
+phys_rectangle_move(struct PhysRectangle *rect, double dt)
 {
 	struct Vector2D dx = {0};
 	vector2d_mul_float(&dx, &rect->velocity, dt);

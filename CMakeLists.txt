@@ -52,7 +52,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD_REQUIRED ON)
 set_property(
   TARGET ${PROJECT_NAME}
   APPEND_STRING
-  PROPERTY COMPILE_FLAGS "-Wall -Wextra -Wformat-security -pedantic -std=c11 ")
+  PROPERTY COMPILE_FLAGS "-Wall -Wextra -Wformat-security -pedantic -std=c11 -fms-extensions")
 set_property(
   TARGET ${PROJECT_NAME}
   APPEND_STRING
