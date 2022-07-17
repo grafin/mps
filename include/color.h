@@ -1,13 +1,35 @@
 #ifndef COLOR_H_
 #define COLOR_H_
 
-typedef struct Color {
+/**
+ * Structure representing RGBA color.
+ */
+struct Color {
+	/**
+	 * Red amount.
+	 */
 	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-	unsigned char a;
-} Color_t;
 
-void color_print(const Color_t *);
+	/**
+	 * Green amount.
+	 */
+	unsigned char g;
+
+	/**
+	 * Blue amount.
+	 */
+	unsigned char b;
+
+	/**
+	 * Alpha amount.
+	 */
+	unsigned char a;
+};
+
+/**
+ * Print color to stdout.
+ */
+void
+color_print(const struct Color *color);
 
 #endif /* COLOR_H_ */

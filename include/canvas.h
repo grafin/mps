@@ -40,28 +40,28 @@ canvas_delete(struct Canvas *canvas);
  * Fill canvas with solid color.
  */
 int
-canvas_fill(struct Canvas *canvas, const Color_t *color);
+canvas_fill(struct Canvas *canvas, const struct Color *color);
 
 /**
  * Draw single point in pos on canvas, using specified color.
  */
 int
 canvas_draw_point2d(struct Canvas *canvas,
-		    const Vector2D_t *pos, const Color_t *color);
+		    const Vector2D_t *pos, const struct Color *color);
 
 /**
  * Draw filled rect on canvas, using specified color.
  */
 int
 canvas_draw_rectangle(struct Canvas *canvas,
-		      const Rectangle_t *rect, const Color_t *color);
+		      const Rectangle_t *rect, const struct Color *color);
 
 /**
  * Draw filled circle on canvas, using specified color.
  */
 int
 canvas_draw_circle(struct Canvas *canvas,
-		   const Circle_t *circle, const Color_t *color);
+		   const Circle_t *circle, const struct Color *color);
 
 /**
  * Update title of canvas.

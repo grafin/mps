@@ -108,7 +108,7 @@ canvas_delete(struct Canvas *canvas)
  * Change current renderer color.
  */
 static int
-canvas_set_color(struct Canvas *canvas, const Color_t *color)
+canvas_set_color(struct Canvas *canvas, const struct Color *color)
 {
 	int rc = SDL_SetRenderDrawColor(canvas->_p->renderer,
 					color->r, color->g, color->b, color->a);
@@ -120,7 +120,7 @@ canvas_set_color(struct Canvas *canvas, const Color_t *color)
 }
 
 int
-canvas_fill(struct Canvas *canvas, const Color_t *color)
+canvas_fill(struct Canvas *canvas, const struct Color *color)
 {
 	int rc = canvas_set_color(canvas, color);
 	if (rc < 0)
@@ -137,7 +137,7 @@ out:
 
 int
 canvas_draw_point2d(struct Canvas *canvas,
-		    const Vector2D_t *pos, const Color_t *color)
+		    const Vector2D_t *pos, const struct Color *color)
 {
 	int rc = canvas_set_color(canvas, color);
 	if (rc < 0)
@@ -153,7 +153,7 @@ out:
 
 int
 canvas_draw_rectangle(struct Canvas *canvas,
-		      const Rectangle_t *rect, const Color_t *color)
+		      const Rectangle_t *rect, const struct Color *color)
 {
 	Vector2D_t end = {
 		rect->start.x + rect->width, rect->start.y + rect->height};
@@ -174,7 +174,7 @@ out:
 
 int
 canvas_draw_circle(struct Canvas *canvas,
-		   const Circle_t *circle, const Color_t *color)
+		   const Circle_t *circle, const struct Color *color)
 {
 	double r = circle->radius;
 	int rc = 0;
