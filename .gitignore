@@ -1,4 +1,4 @@
 a.out
 *.o
-build/
+build*/
 compile_commands.json
