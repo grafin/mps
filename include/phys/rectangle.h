@@ -8,12 +8,11 @@
  */
 struct PhysRectangle {
 	union {
-		struct Rectangle;
-
 		/**
 		 * Rectangle object.
 		 */
 		struct Rectangle _rect;
+		struct Rectangle;
 	};
 
 	/**
