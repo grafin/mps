@@ -11,14 +11,17 @@
 #include <phys/rectangle.h>
 #include <circle.h>
 
-//Screen dimension constants
+/**
+ * Screen dimension constants.
+ */
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const int TITLE_LEN = 255;
 
 const float FPS = 60.0;
 
-int main(void)
+int
+main(void)
 {
 	bool running = true;
 	char title[TITLE_LEN + 1];
@@ -43,8 +46,8 @@ int main(void)
 	while (running) {
 		uint64_t t_0 = SDL_GetTicks64();
 
-		while(SDL_PollEvent(&e) != 0) {
-			if(e.type == SDL_QUIT)
+		while (SDL_PollEvent(&e) != 0) {
+			if (e.type == SDL_QUIT)
 				running = false;
 		}
 
