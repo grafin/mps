@@ -43,9 +43,9 @@ aux_source_directory(src/phys SRC_LIST)
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 
-find_package(SDL2 REQUIRED)
+find_library(SDL2Fwk SDL2 REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC "${SDL2Fwk}")
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD_REQUIRED ON)
