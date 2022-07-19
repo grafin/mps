@@ -17,18 +17,19 @@ _print(const void *obj)
 /**
  * Destructor for vector2d.
  */
-static void
-_delete(void *obj)
+void
+vector2d_delete(void *obj)
 {
-	check_type(obj, VECTOR2D);
+	object_delete(obj);
 }
 
 struct Vector2D *
 vector2d_init(struct Vector2D *vector, const double x, const double y)
 {
+	object_init(vector);
 	vector->type = VECTOR2D;
 	vector->print = _print;
-	vector->delete = _delete;
+	vector->delete = vector2d_delete;
 
 	vector->x = x;
 	vector->y = y;

@@ -35,6 +35,12 @@ rectangle_init(struct Rectangle *rect,
 	       const double width, const double height);
 
 /**
+ * Destructor for rectangle.
+ */
+void
+rectangle_delete(void *obj);
+
+/**
  * Print rectangle to stdout.
  */
 void

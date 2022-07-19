@@ -29,6 +29,12 @@ circle_init(struct Circle *circle,
 	    const double x, const double y, const double r);
 
 /**
+ * Destructor for circle.
+ */
+void
+circle_delete(void *obj);
+
+/**
  * Print circle to stdout.
  */
 void

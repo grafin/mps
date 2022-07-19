@@ -11,11 +11,8 @@ _print(const void *obj)
 		"Object of type %d\n", ((const struct Object *)obj)->type);
 }
 
-/**
- * Destructor for object.
- */
-static void
-_delete(void *obj)
+void
+object_delete(void *obj)
 {
 	(void)obj;
 }
@@ -26,7 +23,7 @@ object_init(void *obj)
 	struct Object *o = (struct Object *)obj;
 	o->type = UNKNOWN;
 	o->print = _print;
-	o->delete = _delete;
+	o->delete = object_delete;
 
 	return o;
 }

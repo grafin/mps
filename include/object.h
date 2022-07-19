@@ -30,6 +30,12 @@ struct Object *
 object_init(void *obj);
 
 /**
+ * Destructor for object.
+ */
+void
+object_delete(void *obj);
+
+/**
  * Checks objects type.
  */
 static inline void

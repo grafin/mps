@@ -11,15 +11,10 @@ _print(const void *obj)
 	rectangle_print((const struct Rectangle *)obj);
 }
 
-/**
- * Destructor for rectangle.
- */
-static void
-_delete(void *obj)
+void
+rectangle_delete(void *obj)
 {
-	check_type(obj, RECTANGLE);
-	struct Rectangle *rect = (struct Rectangle *)obj;
-	rect->_start.delete(&rect->_start);
+	vector2d_delete(obj);
 }
 
 struct Rectangle *
@@ -27,11 +22,11 @@ rectangle_init(struct Rectangle *rect,
 	       const double x, const double y,
 	       const double width, const double height)
 {
+	vector2d_init(&rect->_start, x, y);
 	rect->type = RECTANGLE;
 	rect->print = _print;
-	rect->delete = _delete;
+	rect->delete = rectangle_delete;
 
-	vector2d_init(&rect->_start, x, y);
 	rect->width = width;
 	rect->height = height;
 

@@ -11,26 +11,21 @@ _print(const void *obj)
 	circle_print((const struct Circle *)obj);
 }
 
-/**
- * Destructor for circle.
- */
-static void
-_delete(void *obj)
+void
+circle_delete(void *obj)
 {
-	check_type(obj, CIRCLE);
-	struct Circle *circle = (struct Circle *)obj;
-	circle->_center.delete(&circle->_center);
+	vector2d_delete(obj);
 }
 
 struct Circle *
 circle_init(struct Circle *circle,
 	    const double x, const double y, const double r)
 {
+	vector2d_init(&circle->_center, x, y);
 	circle->type = CIRCLE;
 	circle->print = _print;
-	circle->delete = _delete;
+	circle->delete = circle_delete;
 
-	vector2d_init(&circle->_center, x, y);
 	circle->r = r;
 
 	return circle;

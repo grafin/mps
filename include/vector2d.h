@@ -28,6 +28,12 @@ struct Vector2D *
 vector2d_init(struct Vector2D *vector, const double x, const double y);
 
 /**
+ * Destructor for vector2d.
+ */
+void
+vector2d_delete(void *obj);
+
+/**
  * Print vector to stdout.
  */
 void
