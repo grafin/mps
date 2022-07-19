@@ -1,6 +1,53 @@
 #include <log.h>
 #include <vector2d.h>
 
+#include <stdio.h>
+#include <stdbool.h>
+
+/**
+ * Checks if obj is vector2d.
+ */
+static bool
+_check_type(const struct Object *obj)
+{
+	return obj->type == VECTOR2D;
+}
+
+/**
+ * Wrapper for vector2d_print function to use with Object.
+ */
+static void
+_print(const struct Object *obj)
+{
+	if (!_check_type(obj))
+		return;
+
+	vector2d_print((const struct Vector2D *)obj);
+}
+
+/**
+ * Destructor for vector2d.
+ */
+static void
+_delete(struct Object *obj)
+{
+	if (!_check_type(obj))
+		return;
+}
+
+struct Vector2D *
+vector2d_init(struct Vector2D *vector, const double x, const double y)
+{
+	vector->type = VECTOR2D;
+	vector->print = _print;
+	vector->delete = _delete;
+
+	vector->x = x;
+	vector->y = y;
+
+	return vector;
+}
+
 void
 vector2d_print(const struct Vector2D *vector)
 {

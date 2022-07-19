@@ -4,7 +4,8 @@
 void
 phys_rectangle_move(struct PhysRectangle *rect, double dt)
 {
-	struct Vector2D dx = {0};
+	struct Vector2D dx;
+	vector2d_init(&dx, 0, 0);
 	vector2d_mul_float(&dx, &rect->velocity, dt);
 	vector2d_sum(&rect->start, &rect->start, &dx);
 

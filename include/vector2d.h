@@ -1,15 +1,31 @@
 #ifndef MPS_VECTOR_2D_H_
 #define MPS_VECTOR_2D_H_
 
+#include <object.h>
+
 /**
  * Two-dimentional vector.
  */
 struct Vector2D {
 	/**
+	 * Inherit Object.
+	 */
+	union {
+		struct Object _obj;
+		struct Object;
+	};
+
+	/**
 	 * Coordinates of the vector.
 	 */
 	double x, y;
 };
+
+/**
+ * Initialize vector at point (x, y).
+ */
+struct Vector2D *
+vector2d_init(struct Vector2D *vector, const double x, const double y);
 
 /**
  * Print vector to stdout.
