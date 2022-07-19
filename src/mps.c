@@ -1,15 +1,15 @@
+#include <log.h>
 #include <canvas.h>
-
-#include <stdio.h>
-#include <stdbool.h>
-
-#include <SDL2/SDL.h>
-
 #include <phys/universe.h>
 #include <vector2d.h>
 #include <rectangle.h>
 #include <phys/rectangle.h>
 #include <circle.h>
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#include <SDL2/SDL.h>
 
 /**
  * Screen dimension constants.

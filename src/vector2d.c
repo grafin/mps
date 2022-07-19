@@ -1,11 +1,10 @@
+#include <log.h>
 #include <vector2d.h>
-
-#include <stdio.h>
 
 void
 vector2d_print(const struct Vector2D *vector)
 {
-	printf("Vector2D{%f, %f}\n", vector->x, vector->y);
+	mps_log(INFO, "Vector2D{%f, %f}\n", vector->x, vector->y);
 }
 
 struct Vector2D *

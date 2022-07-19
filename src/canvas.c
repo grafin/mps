@@ -1,7 +1,7 @@
+#include <log.h>
 #include <canvas.h>
 
 #include <stdbool.h>
-#include <stdio.h>
 #include <SDL2/SDL.h>
 
 /**
@@ -31,19 +31,23 @@ canvas_create(unsigned int width, unsigned int height)
 	struct CanvasPrivate *canvasPrivate = calloc(
 		1, sizeof(struct CanvasPrivate));
 	if (canvasPrivate == NULL)
-		return NULL;
+		mps_log(CRITICAL,
+			"Failed to allocate memory for canvasPrivate.");
 
 	struct Canvas *canvas = calloc(1, sizeof(struct Canvas));
 	if (canvas == NULL) {
 		free(canvasPrivate);
-		return NULL;
+		mps_log(CRITICAL,
+			"Failed to allocate memory for canvas.");
 	}
 	canvas->_p = canvasPrivate;
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		printf("SDL could not initialize! SDL_Error: %s\n",
-		       SDL_GetError());
-		goto error;
+		free(canvas);
+		free(canvasPrivate);
+		mps_log(CRITICAL,
+			"SDL could not initialize! SDL_Error: %s\n",
+			SDL_GetError());
 	}
 
 	canvasPrivate->window = SDL_CreateWindow(
@@ -55,37 +59,39 @@ canvas_create(unsigned int width, unsigned int height)
 		SDL_WINDOW_SHOWN
 	);
 	if (canvasPrivate->window == NULL) {
-		printf("Window could not be created! SDL_Error: %s\n",
-		       SDL_GetError());
 		SDL_Quit();
-		goto error;
+		free(canvas);
+		free(canvasPrivate);
+		mps_log(CRITICAL,
+			"Window could not be created! SDL_Error: %s\n",
+			SDL_GetError());
 	}
 
 	canvasPrivate->renderer = SDL_CreateRenderer(
 		canvasPrivate->window, -1, 0);
 	if (canvasPrivate->renderer == NULL) {
-		printf("Renderer could not be created! SDL_Error: %s\n",
-		       SDL_GetError());
 		SDL_DestroyWindow(canvasPrivate->window);
 		SDL_Quit();
-		goto error;
+		free(canvas);
+		free(canvasPrivate);
+		mps_log(CRITICAL,
+			"Renderer could not be created! SDL_Error: %s\n",
+			SDL_GetError());
 	}
 
 	if (SDL_SetRenderDrawBlendMode(canvasPrivate->renderer,
 				       SDL_BLENDMODE_NONE) < 0) {
-		printf("Could not set blend mode! SDL_Error: %s\n",
-		       SDL_GetError());
 		SDL_DestroyRenderer(canvasPrivate->renderer);
 		SDL_DestroyWindow(canvasPrivate->window);
 		SDL_Quit();
-		goto error;
+		free(canvas);
+		free(canvasPrivate);
+		mps_log(CRITICAL,
+			"Could not set blend mode! SDL_Error: %s\n",
+			SDL_GetError());
 	}
 
 	return canvas;
-error:
-	free(canvas);
-	free(canvasPrivate);
-	return NULL;
 }
 
 int
@@ -113,8 +119,9 @@ canvas_set_color(struct Canvas *canvas, const struct Color *color)
 	int rc = SDL_SetRenderDrawColor(canvas->_p->renderer,
 					color->r, color->g, color->b, color->a);
 	if (rc < 0)
-		printf("Failed to set renderer color! SDL_Error: %s\n",
-		       SDL_GetError());
+		mps_log(ERROR,
+			"Failed to set renderer color! SDL_Error: %s\n",
+			SDL_GetError());
 
 	return rc;
 }
@@ -128,8 +135,9 @@ canvas_fill(struct Canvas *canvas, const struct Color *color)
 
 	rc = SDL_RenderClear(canvas->_p->renderer);
 	if (rc < 0)
-		printf("Failed to fill renderer! SDL_Error: %s\n",
-		       SDL_GetError());
+		mps_log(ERROR,
+			"Failed to fill renderer! SDL_Error: %s\n",
+			SDL_GetError());
 
 out:
 	return rc;
@@ -145,7 +153,7 @@ canvas_draw_point2d(struct Canvas *canvas,
 
 	rc = SDL_RenderDrawPointF(canvas->_p->renderer, pos->x, pos->y);
 	if (rc < 0)
-		printf("Failed to draw Vector2D!");
+		mps_log(ERROR, "Failed to draw Vector2D!");
 
 out:
 	return rc;
