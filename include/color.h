@@ -1,5 +1,5 @@
-#ifndef COLOR_H_
-#define COLOR_H_
+#ifndef MPS_COLOR_H_
+#define MPS_COLOR_H_
 
 /**
  * Structure representing RGBA color.
@@ -32,4 +32,4 @@ struct Color {
 void
 color_print(const struct Color *color);
 
-#endif /* COLOR_H_ */
+#endif /* MPS_COLOR_H_ */

@@ -1,5 +1,5 @@
-#ifndef VECTOR_2D_H_
-#define VECTOR_2D_H_
+#ifndef MPS_VECTOR_2D_H_
+#define MPS_VECTOR_2D_H_
 
 /**
  * Two-dimentional vector.
@@ -50,4 +50,4 @@ vector2d_flip_hor(struct Vector2D *vector);
 struct Vector2D *
 vector2d_flip_ver(struct Vector2D *vector);
 
-#endif /* VECTOR_2D_H_ */
+#endif /* MPS_VECTOR_2D_H_ */

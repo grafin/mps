@@ -1,5 +1,5 @@
-#ifndef CIRCLE_H_
-#define CIRCLE_H_
+#ifndef MPS_CIRCLE_H_
+#define MPS_CIRCLE_H_
 
 #include "vector2d.h"
 
@@ -24,4 +24,4 @@ struct Circle {
 void
 circle_print(const struct Circle *circle);
 
-#endif /* CIRCLE_H_ */
+#endif /* MPS_CIRCLE_H_ */

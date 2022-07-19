@@ -1,5 +1,5 @@
-#ifndef CANVAS_H_
-#define CANVAS_H_
+#ifndef MPS_CANVAS_H_
+#define MPS_CANVAS_H_
 
 #include "color.h"
 #include "vector2d.h"
@@ -69,4 +69,4 @@ canvas_draw_circle(struct Canvas *canvas,
 void
 canvas_set_title(struct Canvas *canvas, const char *title);
 
-#endif /* CANVAS_H_ */
+#endif /* MPS_CANVAS_H_ */

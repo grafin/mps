@@ -1,5 +1,5 @@
-#ifndef PHYS_RECTANGLE_H_
-#define PHYS_RECTANGLE_H_
+#ifndef MPS_PHYS_RECTANGLE_H_
+#define MPS_PHYS_RECTANGLE_H_
 
 #include <rectangle.h>
 
@@ -27,4 +27,4 @@ struct PhysRectangle {
 void
 phys_rectangle_move(struct PhysRectangle *rect, double dt);
 
-#endif /* PHYS_RECTANGLE_H_ */
+#endif /* MPS_PHYS_RECTANGLE_H_ */

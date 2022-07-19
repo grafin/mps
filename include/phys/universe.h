@@ -1,5 +1,5 @@
-#ifndef UNIVERSE_H_
-#define UNIVERSE_H_
+#ifndef MPS_UNIVERSE_H_
+#define MPS_UNIVERSE_H_
 
 /**
  * Strcut that describes physical universe of the simulation.
@@ -20,4 +20,4 @@ void
 universe_init(double left_boundary, double right_boundry,
 	      double top_boundary, double bottom_boundary);
 
-#endif /* UNIVERSE_H_ */
+#endif /* MPS_UNIVERSE_H_ */

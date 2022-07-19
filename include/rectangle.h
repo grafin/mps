@@ -1,5 +1,5 @@
-#ifndef RECTANGLE_H_
-#define RECTANGLE_H_
+#ifndef MPS_RECTANGLE_H_
+#define MPS_RECTANGLE_H_
 
 #include "vector2d.h"
 
@@ -29,4 +29,4 @@ struct Rectangle {
 void
 rectangle_print(const struct Rectangle *rect);
 
-#endif /* RECTANGLE_H_ */
+#endif /* MPS_RECTANGLE_H_ */
