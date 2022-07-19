@@ -8,7 +8,7 @@
  * Wrapper for vector2d_print function to use with Object.
  */
 static void
-_print(const struct Object *obj)
+_print(const void *obj)
 {
 	check_type(obj, VECTOR2D);
 	vector2d_print((const struct Vector2D *)obj);
@@ -18,7 +18,7 @@ _print(const struct Object *obj)
  * Destructor for vector2d.
  */
 static void
-_delete(struct Object *obj)
+_delete(void *obj)
 {
 	check_type(obj, VECTOR2D);
 }

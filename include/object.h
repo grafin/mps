@@ -19,8 +19,8 @@ enum ObjectType {
 
 struct Object {
 	enum ObjectType type;
-	void (*print)(const struct Object *self);
-	void (*delete)(struct Object *self);
+	void (*print)(const void *self);
+	void (*delete)(void *self);
 };
 
 /**
