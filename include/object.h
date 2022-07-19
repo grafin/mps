@@ -24,7 +24,13 @@ struct Object {
 };
 
 /**
- * Checks if obj is vector2d.
+ * Initialize object.
+ */
+struct Object *
+object_init(void *obj);
+
+/**
+ * Checks objects type.
  */
 static inline void
 check_type(const struct Object *obj, enum ObjectType type)
