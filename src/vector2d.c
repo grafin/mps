@@ -5,23 +5,12 @@
 #include <stdbool.h>
 
 /**
- * Checks if obj is vector2d.
- */
-static bool
-_check_type(const struct Object *obj)
-{
-	return obj->type == VECTOR2D;
-}
-
-/**
  * Wrapper for vector2d_print function to use with Object.
  */
 static void
 _print(const struct Object *obj)
 {
-	if (!_check_type(obj))
-		return;
-
+	check_type(obj, VECTOR2D);
 	vector2d_print((const struct Vector2D *)obj);
 }
 
@@ -31,8 +20,7 @@ _print(const struct Object *obj)
 static void
 _delete(struct Object *obj)
 {
-	if (!_check_type(obj))
-		return;
+	check_type(obj, VECTOR2D);
 }
 
 struct Vector2D *
