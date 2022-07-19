@@ -31,9 +31,6 @@ main(void)
 	struct Color white = {0xFF, 0xFF, 0xFF, 0xFF};
 	struct Color red = {0xFF, 0x00, 0x00, 0xFF};
 
-	struct Vector2D start;
-	vector2d_init(&start, 0, 0);
-
 	struct Vector2D velocity;
 	vector2d_init(&velocity, 400, 100);
 
@@ -41,9 +38,8 @@ main(void)
 	rectangle_init(&rect, 0, 0, 100, 100);
 	struct PhysRectangle rect_1 = {{rect}, velocity};
 
-	start.x = 250;
-	start.y = 250;
-	struct Circle circle = {start, 100};
+	struct Circle circle;
+	circle_init(&circle, 250, 250, 100);
 
 	struct Canvas *canvas = canvas_create(SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (canvas == NULL)

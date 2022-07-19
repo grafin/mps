@@ -186,7 +186,7 @@ int
 canvas_draw_circle(struct Canvas *canvas,
 		   const struct Circle *circle, const struct Color *color)
 {
-	double r = circle->radius;
+	double r = circle->r;
 	int rc = 0;
 
 	for (double dy = -r; dy < r; dy++) {
@@ -194,8 +194,7 @@ canvas_draw_circle(struct Canvas *canvas,
 			if (dx * dx + dy * dy < r * r) {
 				struct Vector2D p;
 				vector2d_init(&p,
-					      circle->center.x + dx,
-					      circle->center.y + dy);
+					      circle->x + dx, circle->y + dy);
 				rc = canvas_draw_point2d(canvas, &p, color);
 				if (rc < 0)
 					goto out;

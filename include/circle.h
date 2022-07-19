@@ -10,13 +10,23 @@ struct Circle {
 	/**
 	 * Center of the circle.
 	 */
-	struct Vector2D center;
+	union {
+		struct Vector2D _center;
+		struct Vector2D;
+	};
 
 	/**
 	 * Radius of the circle.
 	 */
-	double radius;
+	double r;
 };
+
+/**
+ * Initialize circle with center at (x, y) and radius r.
+ */
+struct Circle *
+circle_init(struct Circle *circle,
+	    const double x, const double y, const double r);
 
 /**
  * Print circle to stdout.
