@@ -164,16 +164,14 @@ canvas_draw_rectangle(struct Canvas *canvas,
 		      const struct Rectangle *rect, const struct Color *color)
 {
 	struct Vector2D end;
-	vector2d_init(&end,
-		      rect->start.x + rect->width,
-		      rect->start.y + rect->height);
+	vector2d_init(&end, rect->x + rect->width, rect->y + rect->height);
 
 	struct Vector2D p;
 	vector2d_init(&p, 0, 0);
 
 	int rc = 0;
-	for (p.y = rect->start.y; p.y < end.y; p.y++) {
-		for (p.x = rect->start.x; p.x < end.x; p.x++) {
+	for (p.y = rect->y; p.y < end.y; p.y++) {
+		for (p.x = rect->x; p.x < end.x; p.x++) {
 			rc = canvas_draw_point2d(canvas, &p, color);
 			if (rc < 0)
 				goto out;

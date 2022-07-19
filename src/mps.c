@@ -37,7 +37,8 @@ main(void)
 	struct Vector2D velocity;
 	vector2d_init(&velocity, 400, 100);
 
-	struct Rectangle rect = {start, 100, 100};
+	struct Rectangle rect;
+	rectangle_init(&rect, 0, 0, 100, 100);
 	struct PhysRectangle rect_1 = {{rect}, velocity};
 
 	start.x = 250;

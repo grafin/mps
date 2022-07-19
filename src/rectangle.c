@@ -1,9 +1,46 @@
 #include <log.h>
 #include <rectangle.h>
 
+/**
+ * Wrapper for rectangle_print function to use with Object.
+ */
+static void
+_print(const void *obj)
+{
+	check_type(obj, RECTANGLE);
+	rectangle_print((const struct Rectangle *)obj);
+}
+
+/**
+ * Destructor for rectangle.
+ */
+static void
+_delete(void *obj)
+{
+	check_type(obj, RECTANGLE);
+	struct Rectangle *rect = (struct Rectangle *)obj;
+	rect->_start.delete(&rect->_start);
+}
+
+struct Rectangle *
+rectangle_init(struct Rectangle *rect,
+	       const double x, const double y,
+	       const double width, const double height)
+{
+	rect->type = RECTANGLE;
+	rect->print = _print;
+	rect->delete = _delete;
+
+	vector2d_init(&rect->_start, x, y);
+	rect->width = width;
+	rect->height = height;
+
+	return rect;
+}
+
 void
 rectangle_print(const struct Rectangle *rect)
 {
 	mps_log(INFO, "Rectangle{%f, %f, %f, %f}\n",
-		rect->start.x, rect->start.y, rect->width, rect->height);
+		rect->x, rect->y, rect->width, rect->height);
 }

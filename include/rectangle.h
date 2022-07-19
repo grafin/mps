@@ -10,7 +10,10 @@ struct Rectangle {
 	/**
 	 * Top-left corner of the rectangle.
 	 */
-	struct Vector2D start;
+	union {
+		struct Vector2D _start;
+		struct Vector2D;
+	};
 
 	/**
 	 * Width of the rectangle.
@@ -22,6 +25,14 @@ struct Rectangle {
 	 */
 	double height;
 };
+
+/**
+ * Initialize rectangle with top left corner at (x, y).
+ */
+struct Rectangle *
+rectangle_init(struct Rectangle *rect,
+	       const double x, const double y,
+	       const double width, const double height);
 
 /**
  * Print rectangle to stdout.
