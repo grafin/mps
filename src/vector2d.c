@@ -88,7 +88,13 @@ vector2d_flip_ver(struct Vector2D *vector)
 }
 
 double
+vector2d_dot_product(const struct Vector2D *a, const struct Vector2D *b)
+{
+	return a->x * b->x + a->y * b->y;
+}
+
+double
 vector2d_len_square(const struct Vector2D *a)
 {
-	return a->x * a->x + a->y * a->y;
+	return vector2d_dot_product(a, a);
 }

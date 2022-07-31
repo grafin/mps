@@ -73,6 +73,12 @@ struct Vector2D *
 vector2d_flip_ver(struct Vector2D *vector);
 
 /**
+ * Returns dot product of vectors a and b.
+ */
+double
+vector2d_dot_product(const struct Vector2D *a, const struct Vector2D *b);
+
+/**
  * Returns |a|^2.
  */
 double
