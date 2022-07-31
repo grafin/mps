@@ -11,10 +11,12 @@ enum ObjectType {
 	VECTOR2D,
 	RECTANGLE,
 	CIRCLE,
-	CANVAS,
-	COLOR,
-	PHYS_UNIVERSE,
+
+	UNIVERSE,
+
+	PHYS_OBJECT,
 	PHYS_RECTANGLE,
+	PHYS_CIRCLE,
 };
 
 struct Object {
