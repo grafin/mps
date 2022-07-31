@@ -86,3 +86,9 @@ vector2d_flip_ver(struct Vector2D *vector)
 	vector->y *= -1;
 	return vector;
 }
+
+double
+vector2d_len_square(const struct Vector2D *a)
+{
+	return a->x * a->x + a->y * a->y;
+}

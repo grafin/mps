@@ -72,4 +72,10 @@ vector2d_flip_hor(struct Vector2D *vector);
 struct Vector2D *
 vector2d_flip_ver(struct Vector2D *vector);
 
+/**
+ * Returns |a|^2.
+ */
+double
+vector2d_len_square(const struct Vector2D *a);
+
 #endif /* MPS_VECTOR_2D_H_ */
