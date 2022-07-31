@@ -1,6 +1,7 @@
 #ifndef MPS_PHYS_RECTANGLE_H_
 #define MPS_PHYS_RECTANGLE_H_
 
+#include <phys/object.h>
 #include <rectangle.h>
 
 /**
@@ -9,17 +10,38 @@
 struct PhysRectangle {
 	union {
 		/**
-		 * Rectangle object.
+		 * Physical object.
 		 */
-		struct Rectangle _rect;
-		struct Rectangle;
+		struct PhysObject _phys_obj;
+		struct PhysObject;
 	};
 
 	/**
-	 * Current velocity vector.
+	 * Corresponding rectangle.
 	 */
-	struct Vector2D velocity;
+	struct Rectangle rect;
 };
+
+/**
+ * Initialize physical rectangle.
+ */
+struct PhysRectangle *
+phys_rectangle_init(struct PhysRectangle *rect,
+		    const double x, const double y,
+		    const double width, const double height,
+		    const double vx, const double vy);
+
+/**
+ * Destructor for physical rectangle.
+ */
+void
+phys_rectangle_delete(void *obj);
+
+/**
+ * Print physical rectangle to stdout.
+ */
+void
+phys_rectangle_print(const struct PhysRectangle *rect);
 
 /**
  * Change rectangle position in space, after dt time passes.
@@ -27,4 +49,10 @@ struct PhysRectangle {
 void
 phys_rectangle_move(struct PhysRectangle *rect, double dt);
 
+/**
+ * Process collisions for rectanlge with objects.
+ */
+void
+phys_rectangle_collide(struct PhysRectangle *rect,
+		       const struct PhysObject *objects[]);
 #endif /* MPS_PHYS_RECTANGLE_H_ */
