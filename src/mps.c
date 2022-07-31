@@ -1,10 +1,8 @@
 #include <log.h>
 #include <canvas.h>
 #include <phys/universe.h>
-#include <vector2d.h>
-#include <rectangle.h>
 #include <phys/rectangle.h>
-#include <circle.h>
+#include <phys/circle.h>
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -20,6 +18,29 @@ const int TITLE_LEN = 255;
 
 const float FPS = 60.0;
 
+void
+draw_phys_object(struct Canvas *canvas,
+		 const struct PhysObject *obj,
+		 const struct Color *color)
+{
+	switch (obj->type) {
+	case PHYS_CIRCLE:
+		canvas_draw_circle(
+			canvas,
+			&((struct PhysCircle *)obj)->circle,
+			color);
+		break;
+	case PHYS_RECTANGLE:
+		canvas_draw_rectangle(
+			canvas,
+			&((struct PhysRectangle *)obj)->rect,
+			color);
+		break;
+	default:
+		break;
+	}
+}
+
 int
 main(void)
 {
@@ -29,17 +50,22 @@ main(void)
 
 	struct Color black = {0x00, 0x00, 0x00, 0xFF};
 	struct Color white = {0xFF, 0xFF, 0xFF, 0xFF};
-	struct Color red = {0xFF, 0x00, 0x00, 0xFF};
 
-	struct Vector2D velocity;
-	vector2d_init(&velocity, 400, 100);
+	struct PhysRectangle rect;
+	phys_rectangle_init(&rect, 0, 0, 100, 100, 400, 100);
 
-	struct Rectangle rect;
-	rectangle_init(&rect, 0, 0, 100, 100);
-	struct PhysRectangle rect_1 = {{rect}, velocity};
+	struct PhysCircle circle_1;
+	phys_circle_init(&circle_1, 100, 200, 50, 200, 200);
 
-	struct Circle circle;
-	circle_init(&circle, 250, 250, 100);
+	struct PhysCircle circle_2;
+	phys_circle_init(&circle_2, 300, 100, 50, 200, 200);
+
+	struct PhysObject *objects[] = {
+		(struct PhysObject *)&rect,
+		(struct PhysObject *)&circle_1,
+		(struct PhysObject *)&circle_2,
+		NULL,
+	};
 
 	struct Canvas *canvas = canvas_create(SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (canvas == NULL)
@@ -57,15 +83,18 @@ main(void)
 				running = false;
 		}
 
-		phys_rectangle_move(&rect_1, dt);
-
 		if (canvas_fill(canvas, &black) != 0) {
 			canvas_delete(canvas);
 			return -1;
 		}
-		canvas_draw_circle(canvas, &circle, &white);
-		canvas_draw_rectangle(
-			canvas, (const struct Rectangle *)&rect_1, &red);
+
+		for (int i = 0; objects[i]; i++) {
+			objects[i]->collide(
+				objects[i],
+				(const struct PhysObject **)objects);
+			objects[i]->move(objects[i], dt);
+			draw_phys_object(canvas, objects[i], &white);
+		}
 		canvas_update(canvas);
 
 		frame++;
