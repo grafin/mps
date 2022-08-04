@@ -46,6 +46,7 @@ add_executable(${PROJECT_NAME} ${SRC_LIST})
 find_library(SDL2Fwk SDL2 REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC "${SDL2Fwk}")
+target_link_libraries(${PROJECT_NAME} PUBLIC m)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD_REQUIRED ON)

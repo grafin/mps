@@ -88,10 +88,12 @@ main(void)
 			return -1;
 		}
 
-		for (int i = 0; objects[i]; i++) {
+		for (int i = 0; objects[i]; i++)
 			objects[i]->collide(
 				objects[i],
 				(const struct PhysObject **)objects);
+
+		for (int i = 0; objects[i]; i++) {
 			objects[i]->move(objects[i], dt);
 			draw_phys_object(canvas, objects[i], &white);
 		}
@@ -113,6 +115,9 @@ main(void)
 		dt = (t_1 - t_0) / 1000.0;
 	}
 
+	circle_delete(&circle_1);
+	circle_delete(&circle_2);
+	rectangle_delete(&rect);
 	canvas_delete(canvas);
 	return 0;
 }

@@ -1,6 +1,8 @@
 #include <phys/circle.h>
 #include <phys/universe.h>
 
+#include <math.h>
+
 /**
  * Wrapper for phys_circle_print function to use with Object.
  */
@@ -69,6 +71,38 @@ phys_circle_move(struct PhysCircle *circle, double dt)
 	vector2d_delete(&dx);
 }
 
+/**
+ * Calculate collision of circle with other circle.
+ */
+static void
+phys_circle_collide_circle(struct PhysCircle *circle,
+			   const struct PhysCircle *other)
+{
+	struct Vector2D distance;
+	vector2d_init(&distance,
+		      other->circle.x - circle->circle.x,
+		      other->circle.y - circle->circle.y);
+
+	double distance_len =
+		vector2d_len_square(&distance);
+	double min_distance_len = (
+		(other->circle.r + circle->circle.r) *
+		(other->circle.r + circle->circle.r));
+
+	if (distance_len < min_distance_len) {
+		if (vector2d_dot_product(&circle->v, &distance) > 0) {
+			struct Vector2D temp;
+			vector2d_init(&temp, 0, 0);
+			vector2d_projection(&temp, &circle->v, &distance);
+			vector2d_mul_float(&temp, &temp, 2);
+			vector2d_dif(&circle->v, &circle->v, &temp);
+			vector2d_delete(&temp);
+		}
+	}
+
+	vector2d_delete(&distance);
+}
+
 void
 phys_circle_collide(struct PhysCircle *circle,
 		    const struct PhysObject *objects[])
@@ -93,30 +127,12 @@ phys_circle_collide(struct PhysCircle *circle,
 		if (objects[i] == (struct PhysObject *)circle)
 			continue;
 		switch (objects[i]->type) {
-		case PHYS_CIRCLE:
-			{
-				struct PhysCircle *obj =
-					(struct PhysCircle *)objects[i];
-
-				struct Vector2D distance;
-				vector2d_init(&distance,
-					      obj->circle.x - circle->circle.x,
-					      obj->circle.y - circle->circle.y);
-
-				double distance_len =
-					vector2d_len_square(&distance);
-				double min_distance_len = (
-					(obj->circle.r + circle->circle.r) *
-					(obj->circle.r + circle->circle.r));
-
-				if (distance_len < min_distance_len) {
-					vector2d_flip_ver(&circle->v);
-					vector2d_flip_hor(&circle->v);
-				}
-
-				vector2d_delete(&distance);
-				break;
-			}
+		case PHYS_CIRCLE: {
+			const struct PhysCircle *other =
+				(const struct PhysCircle *)objects[i];
+			phys_circle_collide_circle(circle, other);
+			break;
+		}
 		default:
 			break;
 		}

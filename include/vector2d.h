@@ -40,6 +40,12 @@ void
 vector2d_print(const struct Vector2D *vector);
 
 /**
+ * Copies vector b to vector a and returns pointer to vector a.
+ */
+struct Vector2D *
+vector2d_copy(struct Vector2D *a, const struct Vector2D *b);
+
+/**
  * Returns pointer to vector a = b + c.
  */
 struct Vector2D *
@@ -54,10 +60,24 @@ vector2d_dif(struct Vector2D *a,
 	     const struct Vector2D *b, const struct Vector2D *c);
 
 /**
+ * Return pointer to vector a whree projection of vector b on c is written.
+ */
+struct Vector2D *
+vector2d_projection(struct Vector2D *a,
+		    const struct Vector2D *b, const struct Vector2D *c);
+
+/**
  * Returns pointer to vector a = b * c.
  */
 struct Vector2D *
 vector2d_mul_float(struct Vector2D *a,
+		   const struct Vector2D *b, const float c);
+
+/**
+ * Returns pointer to vector a = b / c.
+ */
+struct Vector2D *
+vector2d_div_float(struct Vector2D *a,
 		   const struct Vector2D *b, const float c);
 
 /**
@@ -73,6 +93,12 @@ struct Vector2D *
 vector2d_flip_ver(struct Vector2D *vector);
 
 /**
+ * Normalize and returns pointer to it.
+ */
+struct Vector2D *
+vector2d_norm(struct Vector2D *vector);
+
+/**
  * Returns dot product of vectors a and b.
  */
 double
@@ -84,4 +110,9 @@ vector2d_dot_product(const struct Vector2D *a, const struct Vector2D *b);
 double
 vector2d_len_square(const struct Vector2D *a);
 
+/**
+ * Returns |a|.
+ */
+double
+vector2d_len(const struct Vector2D *a);
 #endif /* MPS_VECTOR_2D_H_ */
