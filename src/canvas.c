@@ -107,6 +107,8 @@ canvas_delete(struct Canvas *canvas)
 	SDL_DestroyRenderer(canvas->_p->renderer);
 	SDL_DestroyWindow(canvas->_p->window);
 	SDL_Quit();
+	free(canvas->_p);
+	free(canvas);
 	return 0;
 }
 
@@ -179,6 +181,8 @@ canvas_draw_rectangle(struct Canvas *canvas,
 	}
 
 out:
+	vector2d_delete(&p);
+	vector2d_delete(&end);
 	return rc;
 }
 
@@ -188,21 +192,24 @@ canvas_draw_circle(struct Canvas *canvas,
 {
 	double r = circle->r;
 	int rc = 0;
+	struct Vector2D p;
+	vector2d_init(&p, 0, 0);
 
 	for (double dy = -r; dy < r; dy++) {
 		for (double dx = -r; dx < r; dx++) {
 			if (dx * dx + dy * dy < r * r) {
-				struct Vector2D p;
-				vector2d_init(&p,
-					      circle->x + dx, circle->y + dy);
+				p.x = circle->x + dx;
+				p.y = circle->y + dy;
 				rc = canvas_draw_point2d(canvas, &p, color);
 				if (rc < 0)
 					goto out;
+
 			}
 		}
 	}
 
 out:
+	vector2d_delete(&p);
 	return rc;
 }
 
