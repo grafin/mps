@@ -18,6 +18,18 @@ const int TITLE_LEN = 255;
 
 const float FPS = 60.0;
 
+struct Vector2D *
+rotate(struct Vector2D *v, const double a)
+{
+	double x = v->x;
+	double y = v->y;
+
+	v->x = x * cos(a) + y * sin(a);
+	v->y = -x * sin(a) + y * cos(a);
+
+	return v;
+}
+
 void
 draw_phys_object(struct Canvas *canvas,
 		 const struct PhysObject *obj,
@@ -51,19 +63,11 @@ main(void)
 	struct Color black = {0x00, 0x00, 0x00, 0xFF};
 	struct Color white = {0xFF, 0xFF, 0xFF, 0xFF};
 
-	struct PhysRectangle rect;
-	phys_rectangle_init(&rect, 0, 0, 100, 100, 400, 100);
-
 	struct PhysCircle circle_1;
-	phys_circle_init(&circle_1, 100, 200, 50, 200, 200);
-
-	struct PhysCircle circle_2;
-	phys_circle_init(&circle_2, 300, 100, 50, 200, 200);
+	phys_circle_init(&circle_1, 100, 200, 50, 0, 0);
 
 	struct PhysObject *objects[] = {
-		(struct PhysObject *)&rect,
 		(struct PhysObject *)&circle_1,
-		(struct PhysObject *)&circle_2,
 		NULL,
 	};
 
@@ -99,6 +103,8 @@ main(void)
 		}
 		canvas_update(canvas);
 
+		rotate(&circle_1.circle._center, 0.01);
+
 		frame++;
 		if (frame >= 50) {
 			uint64_t T_1 = SDL_GetTicks64();
@@ -116,8 +122,6 @@ main(void)
 	}
 
 	circle_delete(&circle_1);
-	circle_delete(&circle_2);
-	rectangle_delete(&rect);
 	canvas_delete(canvas);
 	return 0;
 }
